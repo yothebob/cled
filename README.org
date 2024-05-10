@@ -1,5 +1,36 @@
 * Cled 
 
+** examples
+
+# playing with a file
+#+begin_src common-lisp
+(ql:quickload "cled")
+(in-package 'cled)
+(load-file) ;; ./rope.py
+(getf (cled::get-buffer (cled::where :name "rope.py")) :name) ;; "rope.py"
+(nth 1 (getf (cled::get-buffer (cled::where :name "rope.py")) :contents)) ;; "# Python program to concatenate two strings using"
+#+end_src
+
+# update and save a line
+#+begin_src common-lisp
+(cled::load-file) ;;./rope.py
+(setf (nth 1 (getf (cled::get-buffer (cled::where :name "rope.py")) :contents)) "#this is a test")
+(cled::write-contents (cled::get-buffer (cled::where :name "rope.py")))
+
+;; OR
+
+(cled::load-file) ;;./rope.py
+(cled::update-buffer-line (cled::get-buffer (cled::where :name "rope.py")) :line 3 :write t)  ;; input line from user
+
+;; OR 
+
+(cled::load-file) ;;./rope.py
+(cled::update-buffer-line (cled::get-buffer (cled::where :name "rope.py")) :line 3 :content "write content here" :write t)
+
+#+end_src
+
+
+
 ** Usage
 
 ** Installation
