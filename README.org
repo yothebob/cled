@@ -34,3 +34,19 @@
 ** Usage
 
 ** Installation
+
+** TODO features
+
+- [ ] CLI
+- [ ] eval common lisp
+- [ ] eval common lisp on line
+- [ ] set current buffer
+- [ ] lock file? or at least optional update file on external change
+- [ ] switch buffers
+- [ ] regex?
+- [ ] init file with custom functions
+- [ ] hooks (for saving & loading)
+- [ ] major modes?
+- [ ] line editing
+  - find & replace
+  
