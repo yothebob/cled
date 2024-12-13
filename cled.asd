@@ -5,10 +5,16 @@
   :depends-on ()
   :components ((:module "src"
                 :components
-                ((:file "main") (:file "buffers"))))
+                ((:file "main")
+		 ;; (:file "buffers")
+		 (:module "buffers"
+		  :components ((:file "get") (:file "create") (:file "undo") (:file "update") (:file "delete"))
+		 ))
+		))
   :description ""
   :in-order-to ((test-op (test-op "cled/tests"))))
 
+;; TESTING -- not yet
 (defsystem "cled/tests"
   :author ""
   :license ""

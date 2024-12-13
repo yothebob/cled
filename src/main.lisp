@@ -2,12 +2,6 @@
   (:use :cl))
 (in-package :cled)
 
-(defun load-file ()
-  (let (file-path file-lines)
-    (setq file-path (uiop:native-namestring (read-line)))
-    (setq file-lines (uiop:read-file-lines file-path))
-    (create-buffer (file-namestring file-path) file-path file-lines)))
-
 (defun make-comparison-expr (field value)
   `(equal (getf cd ,field) ,value))
 
