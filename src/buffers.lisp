@@ -10,11 +10,22 @@
 	(setq name (format nil "~a<~a>" name (+ buffer-quantity 1))))
   (push (list :name name :path path :contents contents) *BUFFERS*)))
 
-(defun buffer-update (buffer &key name path contents) ;; maybe pass selector-fun instead of buffer
-;; TODO: this function could be cleaned up alot
+(defun buffer-update (buffer &key name path contents) ;; maybe pass selector-fun instead of buffer ;; TODO: this function could be cleaned up alot
   (if name (setf (getf buffer :name) name))
   (if path (setf (getf buffer :path) path))
   (if contents (setf (getf buffer :contents) contents)))
+
+;; (defun write-file
+;; "Take an existing buffer (or current buffer?) and write its contents to a new file. THEN, update buffer path & name." )
+;; (defun write-buffer-to-file (buffer filename)
+;;   "Write the contents of BUFFER to FILENAME."
+;;   (let ((content (gethash 'content (gethash buffer *buffers*))))
+;;     (with-open-file (stream filename
+;;                               :direction :output
+;;                               :if-exists :supersede)
+;;       (write-string content stream))))
+
+
 
 (defun update-buffer-line (buffer &key line contents write)
   (let ((buffer buffer) (contents contents))
