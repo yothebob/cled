@@ -35,6 +35,28 @@
 
 ** Installation
 
+** MVP
+
+OK so I think I want a terminal ed style editor that will connect to my central server, then edit files, push and pull clients.
+- [ ] Terminal ed style editor
+  - [ ] Should be lightweight, cross platform and easy to install.
+  - [ ] Should be able to connect to a central server.
+  - [ ] Should be able to run locally without server connection.
+  - [ ] Should be able to run at least system emacs commands from one client to another.
+  - [ ] Should have a command to be able to run a websocket client
+
+- client services
+  - [ ] Pull a file to server/a connected client
+  - [ ] Push a file to server/a connected client
+  - [ ] Edit a file on server
+  - [ ] Add a file to server
+  - [ ] Delete a file to server
+
+- [ ] Server
+  - [ ] A http server to call apon to the server ed style editor.
+  - [ ] A websocket service to call disbatch client editor commands to the remote client.
+
+    
 ** TODO features
 
 - [ ] CLI
