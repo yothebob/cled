@@ -27,3 +27,13 @@
 ;; try to use for ncurses?
 ;; (ql:quickload "croatoan")
 
+;; user input stream
+;; (let ((cmd ""))
+;;   (loop while (not (string-equal cmd "exit")) do
+;; 	      (progn
+;; 		(format *query-io* "~a: " "cmd")
+;; 		(finish-output *query-io*)
+;; 		(setq cmd (read-line *query-io*))
+;; 		(if (string= cmd "hello")
+;; 		    (princ (concatenate 'string "hello " (uiop:getenv "USER") "!" '(#\Newline))))
+;; 		)))
