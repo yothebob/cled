@@ -23,6 +23,7 @@
 	  (write-sequence line out)
 	  (write-char #\return out)
 	  (write-char #\linefeed out))))))
+
 (defun terminal-stream ()
   (let ((cmd ""))
   (loop while (not (string-equal cmd "exit")) do
@@ -35,16 +36,3 @@
 		(if (string= cmd "hello")
 		    (princ (concatenate 'string "hello " (uiop:getenv "USER") "!" '(#\Newline)))
 		    (eval (read-from-string cmd))))))))
-;; try to use for ncurses?
-;; (ql:quickload "croatoan")
-
-;; user input stream
-;; (let ((cmd ""))
-;;   (loop while (not (string-equal cmd "exit")) do
-;; 	      (progn
-;; 		(format *query-io* "~a: " "cmd")
-;; 		(finish-output *query-io*)
-;; 		(setq cmd (read-line *query-io*))
-;; 		(if (string= cmd "hello")
-;; 		    (princ (concatenate 'string "hello " (uiop:getenv "USER") "!" '(#\Newline))))
-;; 		)))

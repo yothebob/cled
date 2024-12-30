@@ -25,7 +25,6 @@
 		    (write-string content stream)))
   (cled::buffer-update buffer :name filename :path filepath))
 
-
 (defun update-buffer-line (buffer &key line contents write)
   ;; TODO: if the buffer has a file, it needs to update all buffers pointing at same file
   (let ((buffer buffer) (contents contents))

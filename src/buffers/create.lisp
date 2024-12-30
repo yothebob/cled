@@ -21,9 +21,14 @@
   (print "TODO: impliment a function for creating a new file and creating a buffer for it.")
   )
 
-(defun load-file (&key (file-path nil))
+(defun load-file (&key (file-path nil)) ;; TODO: does this work with a new file?
   "Read IO to load file and create buffer, or create buffer from FILE-PATH."
   (let ((fp file-path) file-lines)
     (if (equal file-path nil) (setq fp (uiop:native-namestring (read-line))))
-    (setq file-lines (uiop:read-file-lines fp))
+    (if (probe-file fp)
+	(setq file-lines (uiop:read-file-lines fp))
+	(setq file-lines '("")))
     (create-buffer (file-namestring fp) fp file-lines)))
+
+
+;;TODO: Create file/directory
