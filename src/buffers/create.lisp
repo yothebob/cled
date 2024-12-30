@@ -3,15 +3,27 @@
 (defvar *BUFFERS* '())
 (defvar *CURRENT-BUFFER* nil)
 
-(defun create-buffer (name path contents)
-  (let ((name name) (buffer-quantity 0))
+(defun check-buffer-name-collision (name)
+  "Helper function to take a NAME and see what the next buffer name would be."
+  (let ((buffer-quantity 0))
     (setq buffer-quantity (list-length (get-buffers (where :name name))))
     (if (> buffer-quantity 0)
 	(setq name (format nil "~a<~a>" name (+ buffer-quantity 1))))
-  (push (list :name name :path path :contents contents) *BUFFERS*)))
+    name))
 
-(defun load-file ()
-  (let (file-path file-lines)
-    (setq file-path (uiop:native-namestring (read-line)))
-    (setq file-lines (uiop:read-file-lines file-path))
-    (create-buffer (file-namestring file-path) file-path file-lines)))
+(defun create-buffer (name path contents)
+  "Create a buffer from NAME PATH and CONTENTS."
+  ;; check if path exists?
+  (let ((bname (check-buffer-name-collision name)))
+  (push (list :name bname :path path :contents contents) *BUFFERS*)))
+
+(defun create-file (file-path)
+  (print "TODO: impliment a function for creating a new file and creating a buffer for it.")
+  )
+
+(defun load-file (&key (file-path nil))
+  "Read IO to load file and create buffer, or create buffer from FILE-PATH."
+  (let ((fp file-path) file-lines)
+    (if (equal file-path nil) (setq fp (uiop:native-namestring (read-line))))
+    (setq file-lines (uiop:read-file-lines fp))
+    (create-buffer (file-namestring fp) fp file-lines)))
